@@ -25,3 +25,4 @@ void main() {
    x.write((char*)b, 20);
    x.write((char*)c, 12);
    x.close();
+}
