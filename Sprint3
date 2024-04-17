@@ -1,0 +1,39 @@
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+void fc0(int* a) {
+    *a = 1234;
+}
+void fc1(int* arg) {
+    for (int i = 0; i < 5; i++) arg[i] = arg[i] * 5;
+}
+
+void fc2(float* arg) {
+    for (int i = 0; i < 3; i++) arg[i] = arg[i] * arg[i];
+
+}
+int main() {
+    int a = 1234;
+    int b[5] = { 1000,2000,3000,4000,5000 };
+    float c[3] = { -0.5, 0, 0.5 };
+
+    ofstream xxxx("mybin.dat", ios::binary | ios::out);
+    char* reader;
+    reader = new char[44];
+
+    fc0((int*)reader);
+    fc1((int*)reader + 1); //위에서 1사용
+    fc2((float*)reader + 6);//위에서 5개 사용 1+5
+
+    if (!xxxx) {
+        cout << "no file : " << endl;
+        return 0;
+    }
+
+    xxxx.write((char*)reader, 44);
+
+    xxxx.close();
+    return 0;
+    delete reader;
+}
