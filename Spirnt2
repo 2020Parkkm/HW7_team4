@@ -1,0 +1,24 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+void func1(int n, int* arg) {
+   for (int i = 0; i < n; i++) arg[i] = arg[i] * 5;
+}
+void func2(int n, float* arg) {
+   for (int i = 0; i < n; i++) arg[i] = arg[i] * arg[i];
+}
+//방법2
+void main{
+   int a = 1234;
+   int b[5] = { 1000,2000,3000,4000,5000 };
+   float c[3] = { -0.5, 0, 0.5 };
+   int aa = a;
+   func1(5, b);
+   func2(3, c);
+   ofstream xx;
+   xx.open("mybin.dat", ios::binary | ios::out);
+   xx.write((char*)aa, 4);
+   xx.write((char*)b, 20);
+   xx.write((char*)c, 12);
+   xx.close();
+}
