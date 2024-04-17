@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+void func1(int n, int* arg) {
+   for (int i = 0; i < n; i++) arg[i] = arg[i] * 5;
+}
+void func2(int n, float* arg) {
+   for (int i = 0; i < n; i++) arg[i] = arg[i] * arg[i];
+}
+float All(int a, int* b, float* c) {
+   func1(5, b);
+   func2(3, c);
+   ofstream xxxx;
+   xxxx.open("mybin.dat", ios::binary | ios::out);
+   xxxx.write((char*)a, 4);
+   xxxx.write((char*)b, 20);
+   xxxx.write((char*)c, 12);
+   xxxx.close();
+}
+void main{
+//방법4
+   int a = 1234;
+   int b[5] = { 1000,2000,3000,4000,5000 };
+   float c[3] = { -0.5, 0, 0.5 };
+   All(a, b, c);
+}
