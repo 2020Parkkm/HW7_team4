@@ -17,7 +17,7 @@ void main() {
     func2(3, c);
     ofstream xx;
     xx.open("mybin.dat", ios::binary | ios::out);
-    xx.write((char*)aa, 4);
+    xx.write((char*)&aa, 4);
     xx.write((char*)b, 20);
     xx.write((char*)c, 12);
     xx.close();
