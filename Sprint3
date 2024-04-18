@@ -1,1 +1,36 @@
-//수정필요함
+#include <fstream>
+#include <iostream>
+using namespace std;
+void fc0(int* a) {
+    *a = 1234;
+}
+void fc1(int* arg) {
+    for (int i = 0; i < 5; i++) {
+        arg[i] *= 5;
+    }
+}
+void fc2(float* arg) {
+    for (int i = 0; i < 3; i++) {
+        arg[i] *= arg[i];
+    }
+}
+int main() {
+    int a = 1234;
+    int b[5] = { 1000, 2000, 3000, 4000, 5000 };
+    float c[3] = { -0.5, 0.0, 0.5 };
+
+    fc1(b);
+    fc2(c);
+    int data[9];
+    data[0] = a;
+    for (int i = 0; i < 5; ++i) {
+        data[i + 1] = b[i];
+    }
+    for (int i = 0; i < 3; ++i) {
+        data[i + 6] = *(int*)(&c[i]);
+    }
+    ofstream xxx("mybin.dat", ios::binary | ios::out);
+    xxx.write((char*)(&data), sizeof(data));
+    xxx.close();
+    return 0;
+}
